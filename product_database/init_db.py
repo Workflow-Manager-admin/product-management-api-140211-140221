@@ -29,7 +29,6 @@ else:
 # Create database with sample tables
 conn = sqlite3.connect(DB_NAME)
 cursor = conn.cursor()
-
 # Create initial schema
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS app_info (
@@ -37,6 +36,16 @@ cursor.execute("""
         key TEXT UNIQUE NOT NULL,
         value TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+""")
+
+# Create Product table (id, name, description, price)
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS product (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        description TEXT,
+        price REAL NOT NULL
     )
 """)
 
